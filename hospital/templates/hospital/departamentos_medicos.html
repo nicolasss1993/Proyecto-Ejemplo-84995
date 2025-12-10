@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lista de departamentos</title>
+  <style>
+    /* centrado vertical y horizontal */
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: #f5f7fa;
+      color: #111827;
+    }
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 720px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(17,24,39,0.08);
+      padding: 1.6rem;
+      text-align: center; /* centra el encabezado y contenido */
+    }
+
+    h1 {
+      margin: 0 0 1rem 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    ol.dept-list {
+      margin: 0;
+      padding-left: 1.2rem; /* mantiene numeración a la izquierda */
+      list-style-position: inside;
+      text-align: left; /* el texto de cada item alineado a la izquierda para mejor lectura */
+    }
+
+    ol.dept-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #eef2f7;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    ol.dept-list li:last-child {
+      border-bottom: none;
+    }
+
+    .dept-name {
+      font-weight: 500;
+    }
+
+    .dept-number {
+      color: #6b7280;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    /* responsive */
+    @media (max-width: 480px) {
+      .card { padding: 1rem; }
+      h1 { font-size: 1.1rem; }
+      .dept-number { font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card" role="region" aria-labelledby="lista-departamentos">
+      <h1 id="lista-departamentos">Departamentos</h1>
+
+      {% if departamentos %}
+        <ol class="dept-list" aria-live="polite">
+          {% for dept in departamentos %}
+            <li>
+              <span class="dept-name">
+                {{ dept.nombre }}
+              </span>
+              <span class="dept-number">
+                #{{ dept.nro_departamento }}
+              </span>
+            </li>
+          {% endfor %}
+        </ol>
+      {% else %}
+        <p>No hay departamentos para mostrar.</p>
+      {% endif %}
+
+    </div>
+  </div>
+</body>
+</html>
