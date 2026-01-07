@@ -38,6 +38,13 @@
                         <td>
                           <div class="btn-group">
                             <a href="{% url 'ver_departamento' dept.pk %}" class="btn btn-sm btn-info text-white"> Ver</a>
+                            <a href="{% url 'actualizar_departamento' dept.nro_departamento %}" class="btn btn-sm btn-warning text-white"> Actualizar</a>
+                            <a
+                                href="{% url 'eliminar_departamento' dept.nro_departamento %}"
+                                class="btn btn-sm btn-danger"
+                                onclick="return confirm('¿Seguro que querés eliminar este departamento?');">
+                                Eliminar
+                            </a>
                           </div>
                         </td>
                     </tr>
