@@ -49,12 +49,31 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="{% url 'home' %}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'listar_departamentos' %}">Departamentos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'medico_list' %}">Medicos</a>
-                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'listar_departamentos' %}">Departamentos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'medico_list' %}">Medicos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'perfil_detail' %}">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="{% url 'logout' %}" method="POST" style="display: inline">
+                            {% csrf_token %}
+                            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesion</a>
+                        </form>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Iniciar sesion</a>
+                    </li>
+                {% endif %}
+                
             </ul>
         </div>
     </div>
@@ -68,7 +87,7 @@
         <p class="lead mt-3">
             Atención médica de calidad, profesionales comprometidos y tecnología al servicio de tu salud.
         </p>
-        <a href="#" class="btn btn-light btn-lg mt-3">
+        <a href="{% url 'listar_departamentos' %}" class="btn btn-light btn-lg mt-3">
             Ver Departamentos
         </a>
     </div>
